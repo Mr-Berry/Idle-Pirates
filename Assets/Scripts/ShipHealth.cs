@@ -10,6 +10,7 @@ public class ShipHealth : MonoBehaviour {
 	public bool m_isDead = true;
 
 	private void OnEnable() {
+		CalculateHealth(WaveManager.Instance.m_waveNumber);
 		m_currentHealth = m_maxHealth;
 		m_isDead = false;
 	}
@@ -29,6 +30,10 @@ public class ShipHealth : MonoBehaviour {
 	IEnumerator Die() {
 		yield return new WaitForSeconds(1);
 		gameObject.SetActive(false);
+	}
+
+	private void CalculateHealth(int waveNumber) {
+		
 	}
 
 	public void SetHealth(int health) {
