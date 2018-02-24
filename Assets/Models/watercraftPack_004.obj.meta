@@ -1,33 +1,18 @@
 fileFormatVersion: 2
-guid: a3e6892640df9974e8dc703b90012c5e
-timeCreated: 1519482129
+guid: 6bc48c0cf7649ab46b84f48ffe9febe5
+timeCreated: 1519486953
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: boat
-    100002: cannon
-    100004: cloth
-    100006: //RootNode
-    100008: ropes
-    400000: boat
-    400002: cannon
-    400004: cloth
-    400006: //RootNode
-    400008: ropes
-    2100000: ship material
-    2300000: boat
-    2300002: cannon
-    2300004: cloth
-    2300006: ropes
-    3300000: boat
-    3300002: cannon
-    3300004: cloth
-    3300006: ropes
-    4300000: ropes
-    4300002: cannon
-    4300004: boat
-    4300006: cloth
+    100000: Mesh1_Group1_Model
+    100002: //RootNode
+    400000: Mesh1_Group1_Model
+    400002: //RootNode
+    2100000: Mesh1_Group1_ModelMat
+    2300000: Mesh1_Group1_Model
+    3300000: Mesh1_Group1_Model
+    4300000: Mesh1_Group1_Model
   externalObjects: {}
   materials:
     importMaterials: 1
