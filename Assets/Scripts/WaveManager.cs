@@ -15,6 +15,7 @@ public class WaveManager : MonoBehaviour {
 
 	private Transform[] m_spawnPoints;
 	private static WaveManager m_instance = null;
+	private List<int> m_numSpawnPoints = new List<int>();
 
 	private void Awake() {
 		m_instance = this;
@@ -30,18 +31,29 @@ public class WaveManager : MonoBehaviour {
 		m_spawnPoints = new Transform[potentialSpawns.Length-1];
 		for (int i = 0; i < m_spawnPoints.Length; i++) {
 			m_spawnPoints[i] = potentialSpawns[i+1];
+			m_numSpawnPoints.Add(i);
 		}
 	}
 
 	private void SpawnEnemy() {
+		List<int> spawnPoints = m_numSpawnPoints;
 		for (int i = 0; i < m_numToSpawn; i++) {
 			float chance = Random.Range(0f,1f);
+			GameObject enemy;
 			if (chance <= m_cargoShipChance) {
-				GameObject enemy = PoolManager.Instance.GetObject((int)Objects.ENEMY_CARGO);
+				enemy = PoolManager.Instance.GetObject((int)Objects.ENEMY_CARGO);
 			} else {
-				GameObject enemy = PoolManager.Instance.GetObject((int)Objects.ENEMY_NORMAL);
+				enemy = PoolManager.Instance.GetObject((int)Objects.ENEMY_NORMAL);
 			}
+			int position = spawnPoints[Random.Range(0, spawnPoints.Count)];
+			spawnPoints.Remove(position);
+			InitializeEnemy(enemy, position);
 		}
+	}
+
+	private void InitializeEnemy(GameObject enemy, int position) {
+		enemy.transform.position = m_spawnPoints[position].position;
+		enemy.SetActive(true);
 	}
 
 	public void EnemyKilled() {
@@ -54,6 +66,7 @@ public class WaveManager : MonoBehaviour {
 
 	IEnumerator SpawnDelay() {
 		yield return new WaitForSeconds(m_delayBetweenSpawns);
+		m_waveNumber++;
 		SpawnEnemy();
 	}
 }

@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class ShipHealth : MonoBehaviour {
 
-	public int m_maxHealth = 10;
+	public int m_baseHealth = 10;
+	public int m_maxHealth;
 	public int m_currentHealth;
 	public bool m_isDead = true;
 
 	private void OnEnable() {
-		CalculateHealth(WaveManager.Instance.m_waveNumber);
+		SetHealth(WaveManager.Instance.m_waveNumber);
 		m_currentHealth = m_maxHealth;
 		m_isDead = false;
 	}
@@ -32,11 +33,7 @@ public class ShipHealth : MonoBehaviour {
 		gameObject.SetActive(false);
 	}
 
-	private void CalculateHealth(int waveNumber) {
-		
-	}
-
-	public void SetHealth(int health) {
-		m_maxHealth = health;
+	private void SetHealth(int waveNumber) {
+		m_maxHealth = m_baseHealth*(int)(waveNumber + (waveNumber-1)*1.5f);
 	}
 }
