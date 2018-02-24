@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class PlayerShip : MonoBehaviour {
 
-	public static GameManager Instance { get {return m_instance; }}
+	public int m_pirateBooty = 0;
+	public int m_damagePerSecond = 0;
+	public static PlayerShip Instance { get{ return m_instance; }}
 
-
-	private static GameManager m_instance = null;
+	private static PlayerShip m_instance = null;
 
 	private void Awake() {
 		if (m_instance == null) {
@@ -17,5 +18,4 @@ public class GameManager : MonoBehaviour {
 		}
 		DontDestroyOnLoad(gameObject);
 	}
-	
 }
