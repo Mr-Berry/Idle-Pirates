@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum UD_Objects {ArrowTower,CannonTower,TarTower,EnemyNormal,EnemyFlying,EnemyBoss,Arrow,CannonBall,TarField}
+public enum Objects {}
 
-public class PoolManager_UD : MonoBehaviour {
+public class PoolManager : MonoBehaviour {
 
 	public PooledObject[] m_objectTypes;
 	[Serializable]
@@ -15,11 +15,11 @@ public class PoolManager_UD : MonoBehaviour {
 		[HideInInspector]
 		public List<GameObject> m_objects = new List<GameObject>();
 	}
-	public static PoolManager_UD Instance { get{ return m_instance; }} 
+	public static PoolManager Instance { get{ return m_instance; }} 
 
 	private GameObject m_poolContainer;
 	private GameObject[] m_objectContainers;
-	private static PoolManager_UD m_instance = null;
+	private static PoolManager m_instance = null;
 	private const float LISTGROWTHPERCENTAGE = 1.15f;
 
 	private void Awake() {
