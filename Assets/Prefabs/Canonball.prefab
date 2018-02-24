@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33118454273892100}
   - component: {fileID: 135138729830865220}
   - component: {fileID: 23946917887538428}
-  - component: {fileID: 114807829857307016}
   - component: {fileID: 54025825232843714}
+  - component: {fileID: 114071351475071958}
   m_Layer: 0
   m_Name: Canonball
   m_TagString: Projectile
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1999311018898862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.261, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,7 +100,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114807829857307016
+--- !u!114 &114071351475071958
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,7 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f806ae2b66520aa40971a1c4ebc89c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 1000
+  rb: {fileID: 0}
 --- !u!135 &135138729830865220
 SphereCollider:
   m_ObjectHideFlags: 1

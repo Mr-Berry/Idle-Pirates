@@ -5,6 +5,11 @@ using UnityEngine;
 public class CanonballBehavior : MonoBehaviour {
 	public float moveSpeed; // Number multiplied by Time
 	private Vector3 position; // Vector3 that'll be update to make the Object Move
+	public Rigidbody rb;
+
+	void Awake() {
+		rb = GetComponent<Rigidbody>(); 
+	}
 
 	// Start - initialize Variables
 	void Start() {
@@ -13,7 +18,7 @@ public class CanonballBehavior : MonoBehaviour {
 			moveSpeed = 1.0f;
 		}
 		// Initialize position
-		position = gameObject.transform.position; 
+		position = gameObject.transform.position;
 	}
 
 	// Update - Function that check every Frame
@@ -23,8 +28,7 @@ public class CanonballBehavior : MonoBehaviour {
 
 	// Make this Object Move per second
 	private void Move(float ms) {
-		position.z += ms * Time.deltaTime;
-		gameObject.transform.position = position;
+		rb.velocity = new Vector3(0, 0, ms * Time.deltaTime);
 	}
 	// EveryTime this Object Hit anything
 	void OnTriggerEnter(Collider col) {
