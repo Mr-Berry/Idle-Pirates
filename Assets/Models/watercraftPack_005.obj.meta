@@ -1,34 +1,18 @@
 fileFormatVersion: 2
-guid: fa48489ddb14c0e4ca893d7ee3804fc1
-timeCreated: 1519482263
+guid: b44ee297864a6d54b8875379cde13671
+timeCreated: 1519486953
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Camera
-    100002: Ship
-    100004: //RootNode
-    400000: Camera
-    400002: Ship
-    400004: //RootNode
-    2000000: Camera
-    2100000: sailColor
-    2100002: CannonColor.001
-    2100004: CannonColor
-    2100006: border
-    2100008: back
-    2100010: chain
-    2100012: wood
-    2100014: Material.002
-    2100016: DarkWood
-    2100018: borderWood
-    2100020: metal
-    2100022: Material.007
-    2100024: Material.003
-    2100026: Material.001
-    2300000: Ship
-    3300000: Ship
-    4300000: Ship
+    100000: Mesh1_Group1_Model
+    100002: //RootNode
+    400000: Mesh1_Group1_Model
+    400002: //RootNode
+    2100000: Mesh1_Group1_ModelMat
+    2300000: Mesh1_Group1_Model
+    3300000: Mesh1_Group1_Model
+    4300000: Mesh1_Group1_Model
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -59,7 +43,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 200
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
