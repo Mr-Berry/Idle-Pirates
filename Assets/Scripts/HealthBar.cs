@@ -26,11 +26,14 @@ public class HealthBar : MonoBehaviour {
 	}
 
 	public void SetHealthBar() {
-		m_healthbar.fillAmount = 1f;
+		m_healthbar.fillAmount = 1;
 	}
 
 	public void DamagedEnemy(int damage) {
 		m_currentPool -= damage;
+		if (m_currentPool < 0) {
+			m_currentPool = 0;
+		}
 		m_healthbar.fillAmount = m_currentPool/m_healthPool;
 	}
 }
