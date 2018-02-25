@@ -5,17 +5,24 @@ using UnityEngine;
 public class SecondaryCannons : MonoBehaviour {
 
 	public float m_fireRate = 1f;
-	public int m_upgradeLevel = 0;
+	public int m_sUpgradeLevel = 1;
+	public int m_mUpgradeLevel = 1;
 	public Transform m_sFiringPointContainer;
 	public Transform m_mFiringPointContainer;
 	public bool m_secondariesUnlocked = false;
 	public bool m_mainsUnlocked = false;
+	public static SecondaryCannons Instance { get { return m_instance; }}
 
+	private static SecondaryCannons m_instance = null;
 	private Transform[] m_sCannonFiringPoints;
 	private Transform[] m_mCannonFiringPoints;
 	private Sensor[] m_sensors;
 	private bool[] m_sFiringDelays = new bool[] {true,true,true,true,true,true,true};
 	private bool[] m_mFiringDelays = new bool[] {true,true,true,true,true,true,true};
+
+	private void Awake() {
+		m_instance = this;
+	}
 
 	private void Start() {
 		m_sensors = GetComponentsInChildren<Sensor>();
@@ -43,6 +50,7 @@ public class SecondaryCannons : MonoBehaviour {
 				cannonball.transform.position = m_sCannonFiringPoints[index].position;
 				cannonball.SetActive(true);
 				CannonballBehavior script = cannonball.GetComponent<CannonballBehavior>();
+				SetSecondaryDamage(script);
 				script.SetVelocity(GetVelocity(m_sensors[index].GetTarget().gameObject, script, m_sCannonFiringPoints[index]));
 				StartCoroutine(DelayAfterAttack(index, m_sFiringDelays));
 			}
@@ -76,5 +84,21 @@ public class SecondaryCannons : MonoBehaviour {
 		for (int i = 0; i < m_mCannonFiringPoints.Length; i++) {
 			m_mCannonFiringPoints[i] = potentialPoints[i+1];
 		}				
+	}
+
+	private void SetSecondaryDamage(CannonballBehavior cannonball) {
+		cannonball.m_damage = (int)(m_sUpgradeLevel * 2.25f);
+	}
+
+	private void SetMainDamage() {
+
+	}
+
+	public void UpgradeSecondaries() {
+
+	}
+
+	public void UpgradeMains() {
+		
 	}
 }

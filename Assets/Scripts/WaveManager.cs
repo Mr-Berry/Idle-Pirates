@@ -36,7 +36,11 @@ public class WaveManager : MonoBehaviour {
 	}
 
 	private void SpawnEnemy() {
-		List<int> spawnPoints = m_numSpawnPoints;
+		List<int> spawnPoints = new List<int>(); 
+		for (int i = 0; i < m_numSpawnPoints.Count; i++) {
+			spawnPoints.Add(m_numSpawnPoints[i]);
+		}
+
 		for (int i = 0; i < m_numToSpawn; i++) {
 			float chance = Random.Range(0f,1f);
 			GameObject enemy;
@@ -46,6 +50,7 @@ public class WaveManager : MonoBehaviour {
 				enemy = PoolManager.Instance.GetObject((int)Objects.ENEMY_NORMAL);
 			}
 			int position = spawnPoints[Random.Range(0, spawnPoints.Count)];
+			Debug.Log(m_numSpawnPoints.Count);
 			spawnPoints.Remove(position);
 			InitializeEnemy(enemy, position);
 		}

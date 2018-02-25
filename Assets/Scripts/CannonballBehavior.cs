@@ -26,6 +26,8 @@ public class CannonballBehavior : MonoBehaviour {
 			Explode();
 		} else if (col.gameObject.tag == "Enemy") {
 			col.GetComponent<ShipHealth>().TakeDamage(m_damage);
+			// GameObject effect = PoolManager.Instance.GetObject((int)Objects.SPLASH_EFFECT);
+			// effect.G
 		}
 	}
 

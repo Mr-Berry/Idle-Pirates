@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour {
 	}
 
 	void Update() {
-		if(!hasGold) {
+		if(!hasGold && !GetComponent<ShipHealth>().m_isDead) {
 			if(transform.position.magnitude < 5.0f) {
 				transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, (moveSpeed * 0.33f) * Time.deltaTime);
 			} else {
@@ -54,7 +54,9 @@ public class EnemyMovement : MonoBehaviour {
 	}
 
 	IEnumerator DeactivateShip() {
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(10);
+		hasGold = false;
 		gameObject.SetActive(false);
+		WaveManager.Instance.RestartWave();
 	}
 }

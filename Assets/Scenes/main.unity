@@ -191,6 +191,10 @@ MonoBehaviour:
       type: 2}
     m_numInPool: 10
     m_objects: []
+  - m_objectPrefab: {fileID: 1890960802964906, guid: 8208e01399e255444a981042140b80d4,
+      type: 2}
+    m_numInPool: 10
+    m_objects: []
 --- !u!114 &40047989
 MonoBehaviour:
   m_ObjectHideFlags: 0

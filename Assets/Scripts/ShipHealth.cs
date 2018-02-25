@@ -33,8 +33,8 @@ public class ShipHealth : MonoBehaviour {
 	IEnumerator Die() {
 		WaveManager.Instance.EnemyKilled();
 		EnemyMovement script = GetComponent<EnemyMovement>();
-		script.SlowDown();
 		script.hasGold = false;
+		script.SlowDown();
 		yield return new WaitForSeconds(5);
 		m_sinking = false;
 		gameObject.SetActive(false);
