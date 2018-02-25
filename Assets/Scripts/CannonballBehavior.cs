@@ -6,10 +6,12 @@ public class CannonballBehavior : MonoBehaviour {
 	public float m_speed;
 	public int m_damage = 2;
 	private Vector3 position; // Vector3 that'll be update to make the Object Move
+
 	private Rigidbody m_rb;
 
 	void Awake() {
 		m_rb = GetComponent<Rigidbody>();
+
 	}
 
 	public void SetVelocity(Vector3 velocity) {
