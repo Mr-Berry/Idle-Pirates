@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+	public enum m_stats {KILLS, GOLD_STOLEN, CARGO_CHANCE, RUM, RUM_AFTER_RESET, DISTANCE}
+
 public class PlayerShip : MonoBehaviour {
 
-	
 	public int m_pirateBooty;
 	public int numOfKills;
 	public int goldLost;
@@ -18,14 +19,14 @@ public class PlayerShip : MonoBehaviour {
 	public bool m_canAttack = true;
 	public float m_xVel = 10;
 	public int m_upgradeLevel = 1;
-	public Text gold;
-	public Text Kills;
-	public Text MissingG;
+	public int m_rum = 0;
+	public int m_rumAfterReset = 0;
+	public Text[] m_texts;
 
 	private static PlayerShip m_instance = null;
+	public int m_farthestTravelled = 0;
 
 	private void Awake() {
-		
 		m_instance = this;
 	}
 
@@ -33,12 +34,14 @@ public class PlayerShip : MonoBehaviour {
 		m_pirateBooty = 0;
 		numOfKills = 0;
 		goldLost = 0;
+		UpdateTexts((int)m_stats.CARGO_CHANCE);
+		UpdateTexts((int)m_stats.RUM);
+		UpdateTexts((int)m_stats.RUM_AFTER_RESET);
+		UpdateTexts((int)m_stats.DISTANCE);
+		UpdateTexts((int)m_stats.GOLD_STOLEN);
 	}
 
 	private void Update() {
-		gold.text = m_pirateBooty.ToString();
-		Kills.text = numOfKills.ToString();
-		MissingG.text = goldLost.ToString();
 		if (Input.GetMouseButtonDown(0) && m_canAttack) {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
@@ -83,5 +86,32 @@ public class PlayerShip : MonoBehaviour {
 
 	void audio() {
 		AudioManager.Instance.PlayRandom_CannonFire();
+	}
+
+	public void UpdateTexts(int index) {
+		switch (index) {
+			case 0:
+				m_texts[index].text = numOfKills.ToString();
+			break;
+			case 1:
+				m_texts[index].text = goldLost.ToString();
+			break;
+			case 2:
+				m_texts[index].text = (WaveManager.Instance.m_cargoShipChance*100).ToString() + "%";
+			break;
+			case 3:
+				m_texts[index].text = m_rum.ToString();
+			break;
+			case 4:
+				m_texts[index].text = m_rumAfterReset.ToString();
+			break;
+			case 5:
+				m_texts[index].text = m_farthestTravelled.ToString();
+			break;
+			default:
+				Debug.LogError("UnknownCase");
+			break;
+		}
+		m_texts[index].alignment = TextAnchor.MiddleCenter;
 	}
 }

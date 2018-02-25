@@ -4907,9 +4907,16 @@ MonoBehaviour:
   m_canAttack: 1
   m_xVel: 10
   m_upgradeLevel: 1
-  gold: {fileID: 0}
-  Kills: {fileID: 0}
-  MissingG: {fileID: 0}
+  m_rum: 0
+  m_rumAfterReset: 0
+  m_texts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_farthestTravelled: 0
 --- !u!114 &114719931909784488
 MonoBehaviour:
   m_ObjectHideFlags: 1

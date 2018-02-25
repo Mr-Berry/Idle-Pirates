@@ -30,6 +30,7 @@ public class WaveManager : MonoBehaviour {
 		StartCoroutine(SpawnDelay());
 		SetWaveText();
 		SetEnemyCountText();
+		PlayerShip.Instance.UpdateTexts((int)m_stats.KILLS);
 	}
 
 	private void GetSpawnPoints() {
@@ -73,6 +74,7 @@ public class WaveManager : MonoBehaviour {
 
 	public void EnemyKilled() {
 		m_numKilledInWave++;
+		PlayerShip.Instance.UpdateTexts((int)m_stats.KILLS);
 		if (m_numKilledInWave == m_numInWave) {
 			m_waveNumber++;
 			SetWaveText();
@@ -93,6 +95,10 @@ public class WaveManager : MonoBehaviour {
 
 	private void SetWaveText() {
 		m_waveText.text = m_waveNumber + "KM Travelled";
+		if (m_waveNumber > PlayerShip.Instance.m_farthestTravelled) {
+			PlayerShip.Instance.m_farthestTravelled = m_waveNumber;
+			PlayerShip.Instance.UpdateTexts((int)m_stats.DISTANCE);
+		}
 	}
 
 	private void SetEnemyCountText() {
