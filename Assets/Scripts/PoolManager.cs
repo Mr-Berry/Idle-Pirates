@@ -28,6 +28,9 @@ public class PoolManager : MonoBehaviour {
 		//}
 		m_poolContainer = new GameObject();
 		m_poolContainer.name = "pooledObjects";
+	}
+
+	void Start() {
 		InitObjectArrays();
 	}
 

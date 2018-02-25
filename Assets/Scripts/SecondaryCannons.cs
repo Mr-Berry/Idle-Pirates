@@ -53,7 +53,7 @@ public class SecondaryCannons : MonoBehaviour {
 				if (index == 3) {
 					canonEffect.transform.rotation = m_sCannonFiringPoints[3].rotation;
 				} else if(index < 3) {
-					canonEffect.transform.rotation = Quaternion.Inverse(m_sCannonFiringPoints[index].rotation);
+					canonEffect.transform.rotation = m_sCannonFiringPoints[index].rotation;
 				} else if(index > 3) {
 					canonEffect.transform.rotation = m_sCannonFiringPoints[index].rotation;
 				}

@@ -40,6 +40,7 @@ public class EnemyMovement : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		if(col.gameObject.tag == "Player" && !GetComponent<ShipHealth>().m_isDead) {
 			hasGold = true;
+			PirateBooty.Instance.LoseGold(10 * WaveManager.Instance.m_waveNumber);
 		}
 	}
 

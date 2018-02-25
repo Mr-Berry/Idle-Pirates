@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShip : MonoBehaviour {
 
-	public int m_pirateBooty = 0;
+	
+	public int m_pirateBooty;
+	public int numOfKills;
+	public int goldLost;
 	public int m_damagePerSecond = 0;
 	public Transform m_playerCannon;
 	public Transform m_playerFiringPoint;
@@ -14,14 +18,27 @@ public class PlayerShip : MonoBehaviour {
 	public bool m_canAttack = true;
 	public float m_xVel = 10;
 	public int m_upgradeLevel = 1;
+	public Text gold;
+	public Text Kills;
+	public Text MissingG;
 
 	private static PlayerShip m_instance = null;
 
 	private void Awake() {
+		
 		m_instance = this;
 	}
 
+	void Start() {
+		m_pirateBooty = 0;
+		numOfKills = 0;
+		goldLost = 0;
+	}
+
 	private void Update() {
+		gold.text = m_pirateBooty.ToString();
+		Kills.text = numOfKills.ToString();
+		MissingG.text = goldLost.ToString();
 		if (Input.GetMouseButtonDown(0) && m_canAttack) {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;

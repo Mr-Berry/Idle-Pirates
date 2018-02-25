@@ -604,11 +604,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597345c253400bb4f98c9ae33cdcd5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpBar: {fileID: 0}
   m_baseHealth: 10
   m_maxHealth: 0
   m_currentHealth: 0
   m_isDead: 1
   m_sinking: 0
+  GoldGain: 25
 --- !u!114 &114176191645247672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -621,7 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_baseGold: 5
-  m_goldAward: 0
+  m_goldAward: 25
 --- !u!114 &114632614596168226
 MonoBehaviour:
   m_ObjectHideFlags: 1

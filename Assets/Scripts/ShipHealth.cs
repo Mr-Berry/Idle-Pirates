@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ShipHealth : MonoBehaviour {
-
+	
 	public int m_baseHealth = 10;
 	public int m_maxHealth;
 	public int m_currentHealth;
@@ -26,7 +26,8 @@ public class ShipHealth : MonoBehaviour {
 				m_sinking = true;
 				m_currentHealth = 0;
 				m_isDead = true;
-				// PirateBooty.Instance.SetGold(GoldGain);
+				PirateBooty.Instance.AwardGold();
+				PirateBooty.Instance.KillCount();
 				StartCoroutine(Die());
 			}
 		}

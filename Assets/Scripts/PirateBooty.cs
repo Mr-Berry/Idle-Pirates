@@ -6,11 +6,12 @@ public class PirateBooty : MonoBehaviour {
 
 	public int m_baseGold = 5;
 	public int m_goldAward;
-	// public static PirateBooty Instance { get{ return m_instance; }}
+	public static PirateBooty Instance { get{ return m_instance; }}
+	private static PirateBooty m_instance;
 
-	// void Awake() {
-	// 	m_instance = this;
-	// }
+	void Awake() {
+		m_instance = this;
+	}
 
 	public void AwardGold() {
 		PlayerShip.Instance.m_pirateBooty += m_goldAward;
@@ -26,5 +27,18 @@ public class PirateBooty : MonoBehaviour {
 
 	private void CalculateGold(int waveNumber) {
 		m_goldAward = m_baseGold*waveNumber;
+	}
+
+	public void KillCount() {
+		PlayerShip.Instance.numOfKills++;
+	}
+
+	public void LoseGold(int amountOfGold) {
+		PlayerShip.Instance.goldLost += amountOfGold;
+		if(amountOfGold > PlayerShip.Instance.m_pirateBooty) {
+			PlayerShip.Instance.m_pirateBooty = 0;
+		} else {
+			PlayerShip.Instance.m_pirateBooty -= amountOfGold;
+		}
 	}
 }

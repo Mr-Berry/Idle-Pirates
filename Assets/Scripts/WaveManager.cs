@@ -19,6 +19,7 @@ public class WaveManager : MonoBehaviour {
 
 	private void Awake() {
 		m_instance = this;
+		Debug.Log(m_instance);
 	}
 
 	private void Start() {
