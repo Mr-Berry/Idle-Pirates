@@ -16,6 +16,8 @@ public class PirateBooty : MonoBehaviour {
 	public void AwardGold(bool m_stolenBooty = false) {
 		if (m_stolenBooty) {
 			PlayerShip.Instance.m_pirateBooty += (m_goldAward*2);
+			PlayerShip.Instance.goldLost -= m_goldAward;
+			PlayerShip.Instance.UpdateTexts((int)m_stats.GOLD_STOLEN);
 		} else {
 			PlayerShip.Instance.m_pirateBooty += m_goldAward;
 		}
@@ -40,6 +42,7 @@ public class PirateBooty : MonoBehaviour {
 
 	public void LoseGold(int amountOfGold) {
 		PlayerShip.Instance.goldLost += amountOfGold;
+		PlayerShip.Instance.UpdateTexts((int)m_stats.GOLD_STOLEN);
 		if(amountOfGold > PlayerShip.Instance.m_pirateBooty) {
 			PlayerShip.Instance.m_pirateBooty = 0;
 		} else {
