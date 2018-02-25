@@ -128,7 +128,7 @@ public class Cannons : MonoBehaviour {
 	}
 
 	private void SpawnSecondaryEffect(int index) {
-		GameObject canonEffect = PoolManager.Instance.GetObject((int)Objects.CANON_EFFECT);
+		GameObject canonEffect = PoolManager.Instance.GetObject((int)Objects.EXPLOSION_EFFECT);
 		canonEffect.gameObject.SetActive(true);
 		ParticleSystem[] particles = canonEffect.GetComponentsInChildren<ParticleSystem>();
 		for (int i = 0; i < particles.Length; i++) {
