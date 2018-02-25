@@ -27,10 +27,12 @@ public class CannonballBehavior : MonoBehaviour {
 			splash.gameObject.SetActive(true);
 			splash.transform.position = transform.position;
 			Explode();
+			gameObject.SetActive(false);
 		} else if (col.gameObject.tag == "Enemy") {
 			col.GetComponent<ShipHealth>().TakeDamage(m_damage);
-			// GameObject effect = PoolManager.Instance.GetObject((int)Objects.SPLASH_EFFECT);
-			// effect.G
+			GameObject explosion = PoolManager.Instance.GetObject((int)Objects.EXPLOSION_EFFECT);
+			explosion.gameObject.SetActive(true);
+			explosion.transform.position = col.transform.position;
 		}
 	}
 

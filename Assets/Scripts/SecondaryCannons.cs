@@ -47,7 +47,17 @@ public class SecondaryCannons : MonoBehaviour {
 			if ( m_sFiringDelays[index]) {
 				m_sFiringDelays[index] = false;
 				GameObject cannonball = PoolManager.Instance.GetObject((int)Objects.CANNONBALL_S);
+				GameObject canonEffect = PoolManager.Instance.GetObject((int)Objects.CANON_EFFECT);
+				canonEffect.gameObject.SetActive(true);
 				cannonball.transform.position = m_sCannonFiringPoints[index].position;
+				if (index == 3) {
+					canonEffect.transform.rotation = m_sCannonFiringPoints[3].rotation;
+				} else if(index < 3) {
+					canonEffect.transform.rotation = Quaternion.Inverse(m_sCannonFiringPoints[index].rotation);
+				} else if(index > 3) {
+					canonEffect.transform.rotation = m_sCannonFiringPoints[index].rotation;
+				}
+				canonEffect.transform.position = m_sCannonFiringPoints[index].position;
 				cannonball.SetActive(true);
 				CannonballBehavior script = cannonball.GetComponent<CannonballBehavior>();
 				SetSecondaryDamage(script);
