@@ -49,6 +49,7 @@ public class Cannons : MonoBehaviour {
 			if ( m_sFiringDelays[index]) {
 				m_sFiringDelays[index] = false;
 				GameObject cannonball = PoolManager.Instance.GetObject((int)Objects.CANNONBALL_S);
+				audio();
 				SpawnSecondaryEffect(index);
 				cannonball.transform.position = m_sCannonFiringPoints[index].position;
 				cannonball.SetActive(true);
@@ -65,6 +66,7 @@ public class Cannons : MonoBehaviour {
 			if ( m_mFiringDelays[index]) {
 				m_mFiringDelays[index] = false;
 				GameObject cannonball = PoolManager.Instance.GetObject((int)Objects.CANNONBALL_M);
+				audio();
 				SpawnMainEffect(index);
 				cannonball.transform.position = m_mCannonFiringPoints[index].position;
 				cannonball.SetActive(true);
@@ -145,5 +147,9 @@ public class Cannons : MonoBehaviour {
 		}
 		canonEffect.transform.position = m_mCannonFiringPoints[index].position;
 		canonEffect.transform.rotation = m_mCannonFiringPoints[index].rotation;
+	}
+	
+	void audio() {
+		AudioManager.Instance.PlayRandom_CannonFire();
 	}
 }

@@ -23,6 +23,7 @@ public class CannonballBehavior : MonoBehaviour {
 	// EveryTime this Object Hit anything
 	void OnTriggerEnter(Collider col) {
 
+
 		RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit)) {
 			if(col.gameObject.tag == "Water") {
@@ -39,6 +40,7 @@ public class CannonballBehavior : MonoBehaviour {
 				explosion.transform.LookAt(transform.forward);
 			}           
         }
+
 	}
 
 	void Explode () {
@@ -55,4 +57,8 @@ public class CannonballBehavior : MonoBehaviour {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 10);
     }
+
+	void audio() {
+		AudioManager.Instance.PlayRandom_CannonFire();
+	}
 }

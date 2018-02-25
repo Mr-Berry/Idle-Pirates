@@ -69,6 +69,7 @@ public class PlayerShip : MonoBehaviour {
 		cannonball.SetActive(true);
 		CannonballBehavior script = cannonball.GetComponent<CannonballBehavior>();
 		script.SetVelocity(GetVelocity(enemyPos, script));
+		
 	}
 
 	private Vector3 GetVelocity(Vector3 enemyPos, CannonballBehavior projectile) {
@@ -77,5 +78,10 @@ public class PlayerShip : MonoBehaviour {
 		travelTime = Mathf.Sqrt(travelTime);
 		Vector3 newVelocity = new Vector3(direction.x/travelTime,(direction.y/travelTime)-(Physics.gravity.y*travelTime/2f),direction.z/travelTime);
 		return newVelocity;
+	}
+
+
+	void audio() {
+		AudioManager.Instance.PlayRandom_CannonFire();
 	}
 }
