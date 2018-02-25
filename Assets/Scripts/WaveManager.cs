@@ -37,6 +37,7 @@ public class WaveManager : MonoBehaviour {
 	}
 
 	private void SpawnEnemy() {
+		HealthBar.Instance.SetHealthBar();
 		List<int> spawnPoints = new List<int>(); 
 		for (int i = 0; i < m_numSpawnPoints.Count; i++) {
 			spawnPoints.Add(m_numSpawnPoints[i]);
