@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondaryCannons : MonoBehaviour {
+public class Cannons : MonoBehaviour {
 
-	public float m_fireRate = 1f;
+	public float m_sFireRate = 1f;
+	public float m_mFireRate = 0.5f;
 	public int m_sUpgradeLevel = 1;
 	public int m_mUpgradeLevel = 1;
 	public Transform m_sFiringPointContainer;
 	public Transform m_mFiringPointContainer;
 	public bool m_secondariesUnlocked = false;
 	public bool m_mainsUnlocked = false;
-	public static SecondaryCannons Instance { get { return m_instance; }}
+	public static Cannons Instance { get { return m_instance; }}
 
-	private static SecondaryCannons m_instance = null;
+	private static Cannons m_instance = null;
 	private Transform[] m_sCannonFiringPoints;
 	private Transform[] m_mCannonFiringPoints;
 	private Sensor[] m_sensors;
@@ -36,6 +37,7 @@ public class SecondaryCannons : MonoBehaviour {
 				if (health != null) {
 					if (!health.m_isDead) {
 						FireSecondaryCannon(i);
+						FireMainCannon(i);
 					}
 				}
 			}
@@ -47,17 +49,8 @@ public class SecondaryCannons : MonoBehaviour {
 			if ( m_sFiringDelays[index]) {
 				m_sFiringDelays[index] = false;
 				GameObject cannonball = PoolManager.Instance.GetObject((int)Objects.CANNONBALL_S);
-				GameObject canonEffect = PoolManager.Instance.GetObject((int)Objects.CANON_EFFECT);
-				canonEffect.gameObject.SetActive(true);
+				SpawnSecondaryEffect(index);
 				cannonball.transform.position = m_sCannonFiringPoints[index].position;
-				if (index == 3) {
-					canonEffect.transform.rotation = m_sCannonFiringPoints[3].rotation;
-				} else if(index < 3) {
-					canonEffect.transform.rotation = m_sCannonFiringPoints[index].rotation;
-				} else if(index > 3) {
-					canonEffect.transform.rotation = m_sCannonFiringPoints[index].rotation;
-				}
-				canonEffect.transform.position = m_sCannonFiringPoints[index].position;
 				cannonball.SetActive(true);
 				CannonballBehavior script = cannonball.GetComponent<CannonballBehavior>();
 				SetSecondaryDamage(script);
@@ -66,6 +59,22 @@ public class SecondaryCannons : MonoBehaviour {
 			}
 		}
 	}
+
+	private void FireMainCannon(int index) {
+		if (m_secondariesUnlocked) {
+			if ( m_mFiringDelays[index]) {
+				m_mFiringDelays[index] = false;
+				GameObject cannonball = PoolManager.Instance.GetObject((int)Objects.CANNONBALL_M);
+				SpawnMainEffect(index);
+				cannonball.transform.position = m_mCannonFiringPoints[index].position;
+				cannonball.SetActive(true);
+				CannonballBehavior script = cannonball.GetComponent<CannonballBehavior>();
+				SetMainDamage(script);
+				script.SetVelocity(GetVelocity(m_sensors[index].GetTarget().gameObject, script, m_mCannonFiringPoints[index]));
+				StartCoroutine(DelayAfterAttack(index, m_mFiringDelays));
+			}
+		}
+	}	
 
 	private Vector3 GetVelocity(GameObject enemy, CannonballBehavior projectile, Transform firingPoint) {
 		Vector3 direction = enemy.transform.position - firingPoint.position;
@@ -79,7 +88,7 @@ public class SecondaryCannons : MonoBehaviour {
 	}
 
 	IEnumerator DelayAfterAttack(int index, bool[] firingDelays) {
-		yield return new WaitForSeconds(m_fireRate);
+		yield return new WaitForSeconds(m_sFireRate);
 		firingDelays[index] = true;
 	}
 
@@ -100,6 +109,10 @@ public class SecondaryCannons : MonoBehaviour {
 		cannonball.m_damage = (int)(m_sUpgradeLevel * 2.25f);
 	}
 
+	private void SetMainDamage(CannonballBehavior cannonball) {
+		cannonball.m_damage = (int)(m_sUpgradeLevel * 2.5f);
+	}
+
 	private void SetMainDamage() {
 
 	}
@@ -110,5 +123,27 @@ public class SecondaryCannons : MonoBehaviour {
 
 	public void UpgradeMains() {
 		
+	}
+
+	private void SpawnSecondaryEffect(int index) {
+		GameObject canonEffect = PoolManager.Instance.GetObject((int)Objects.CANON_EFFECT);
+		canonEffect.gameObject.SetActive(true);
+		ParticleSystem[] particles = canonEffect.GetComponentsInChildren<ParticleSystem>();
+		for (int i = 0; i < particles.Length; i++) {
+			particles[i].Play();
+		}
+		canonEffect.transform.position = m_sCannonFiringPoints[index].position;
+		canonEffect.transform.rotation = m_sCannonFiringPoints[index].rotation;
+	}
+
+	private void SpawnMainEffect(int index) {
+		GameObject canonEffect = PoolManager.Instance.GetObject((int)Objects.CANON_EFFECT);
+		canonEffect.gameObject.SetActive(true);
+		ParticleSystem[] particles = canonEffect.GetComponentsInChildren<ParticleSystem>();
+		for (int i = 0; i < particles.Length; i++) {
+			particles[i].Play();
+		}
+		canonEffect.transform.position = m_mCannonFiringPoints[index].position;
+		canonEffect.transform.rotation = m_mCannonFiringPoints[index].rotation;
 	}
 }

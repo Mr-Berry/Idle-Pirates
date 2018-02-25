@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour {
 	public float rotSpeed;
 	public Vector3 spawnPoint;
 	public bool hasGold = false;
-	private Rigidbody m_rb;
+	public Rigidbody m_rb;
 	private Quaternion m_startRotation;
 	private float m_originalSpeed;
 	private float m_deathSpeed;
@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour {
 	}
 
 	void Update() {
-		if(!hasGold && !GetComponent<ShipHealth>().m_isDead) {
+		if(!hasGold) {
 			if(transform.position.magnitude < 5.0f) {
 				transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, (moveSpeed * 0.33f) * Time.deltaTime);
 			} else {
@@ -40,12 +40,13 @@ public class EnemyMovement : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		if(col.gameObject.tag == "Player" && !GetComponent<ShipHealth>().m_isDead) {
 			hasGold = true;
-			PirateBooty.Instance.LoseGold(10 * WaveManager.Instance.m_waveNumber);
+			PirateBooty.Instance.LoseGold(GetComponent<PirateBooty>().m_goldAward);
 		}
 	}
 
 	public void SlowDown() {
 		moveSpeed = m_deathSpeed;
+		m_rb.velocity = new Vector3( m_rb.velocity.x, -5, m_rb.velocity.z);
 	}
 
 	public void NormalizeSpeed() {

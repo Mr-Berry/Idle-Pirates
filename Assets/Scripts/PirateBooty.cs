@@ -13,8 +13,13 @@ public class PirateBooty : MonoBehaviour {
 		m_instance = this;
 	}
 
-	public void AwardGold() {
-		PlayerShip.Instance.m_pirateBooty += m_goldAward;
+	public void AwardGold(bool m_stolenBooty = false) {
+		if (m_stolenBooty) {
+			PlayerShip.Instance.m_pirateBooty += (m_goldAward*2);
+		} else {
+			PlayerShip.Instance.m_pirateBooty += m_goldAward;
+		}
+
 	}
 
 	public void SetGold(int gold) {
@@ -40,5 +45,6 @@ public class PirateBooty : MonoBehaviour {
 		} else {
 			PlayerShip.Instance.m_pirateBooty -= amountOfGold;
 		}
+		m_goldAward += amountOfGold;
 	}
 }

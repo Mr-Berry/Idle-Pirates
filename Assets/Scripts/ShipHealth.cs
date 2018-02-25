@@ -12,6 +12,12 @@ public class ShipHealth : MonoBehaviour {
 	public bool m_sinking = false;
 	public int GoldGain = 25;
 
+	private EnemyMovement m_movement;
+
+	private void Start() {
+		m_movement = GetComponent<EnemyMovement>();
+	}
+
 	private void OnEnable() {
 		SetHealth(WaveManager.Instance.m_waveNumber);
 		m_currentHealth = m_maxHealth;
@@ -26,8 +32,8 @@ public class ShipHealth : MonoBehaviour {
 				m_sinking = true;
 				m_currentHealth = 0;
 				m_isDead = true;
-				PirateBooty.Instance.AwardGold();
 				PirateBooty.Instance.KillCount();
+				GetComponent<PirateBooty>().AwardGold(m_movement.hasGold);
 				StartCoroutine(Die());
 			}
 		}
@@ -35,11 +41,13 @@ public class ShipHealth : MonoBehaviour {
 
 	IEnumerator Die() {
 		WaveManager.Instance.EnemyKilled();
-		EnemyMovement script = GetComponent<EnemyMovement>();
-		script.hasGold = false;
-		script.SlowDown();
+		m_movement.SlowDown();
 		yield return new WaitForSeconds(5);
 		m_sinking = false;
+		m_movement.m_rb.velocity = Vector3.zero;
+		if (m_movement.hasGold) {
+			m_movement.hasGold = false;
+		}
 		gameObject.SetActive(false);
 	}
 
