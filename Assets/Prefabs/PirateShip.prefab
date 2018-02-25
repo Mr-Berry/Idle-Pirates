@@ -1233,7 +1233,7 @@ GameObject:
   - component: {fileID: 136725666451278822}
   - component: {fileID: 114553102968053174}
   - component: {fileID: 114962773788839780}
-  - component: {fileID: 114449815690253308}
+  - component: {fileID: 95387846017175986}
   m_Layer: 0
   m_Name: PirateShip
   m_TagString: Player
@@ -4833,6 +4833,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 40}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95387846017175986
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890960802964906}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 574d2b4a9e6222e4eaf4a2c4f8ed5821, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95870167059867598
 Animator:
   serializedVersion: 3
@@ -4861,19 +4878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71aa8d5a1fbfdf24d9d36588a4f6bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114449815690253308
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1890960802964906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1c2dfc38a7a9748aadb7252780d430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_offset: 1
-  m_speed: 1
 --- !u!114 &114498693361691104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4919,6 +4923,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_upgradeCostText: {fileID: 0}
+  gold: {fileID: 0}
   m_farthestTravelled: 0
 --- !u!114 &114719931909784488
 MonoBehaviour:
