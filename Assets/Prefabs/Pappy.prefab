@@ -121,13 +121,18 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4592362912398096}
+  - component: {fileID: 114871164258672898}
+  - component: {fileID: 114110195612475022}
+  - component: {fileID: 114052790256680680}
+  - component: {fileID: 54815242755144190}
+  - component: {fileID: 65426496425955890}
   m_Layer: 0
   m_Name: Pappy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1278814125251678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,3 +1628,76 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1572805969602920}
   m_Mesh: {fileID: 4300024, guid: 4971440174c840940acf92679256331e, type: 3}
+--- !u!54 &54815242755144190
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1176909456815138}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65426496425955890
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1176909456815138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 5, z: 9.269588}
+  m_Center: {x: 0, y: 2.5, z: 1.1347942}
+--- !u!114 &114052790256680680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1176909456815138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45590efc68afb345904a82bc1cf1511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  rotSpeed: 5
+  spawnPoint: {x: 0, y: 0, z: 0}
+  hasGold: 0
+  m_rb: {fileID: 54815242755144190}
+--- !u!114 &114110195612475022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1176909456815138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38db524a37449c343904aca063ece7b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_baseGold: 5
+  m_goldAward: 50
+--- !u!114 &114871164258672898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1176909456815138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597345c253400bb4f98c9ae33cdcd5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_baseHealth: 50
+  m_maxHealth: 0
+  m_currentHealth: 0
+  m_isDead: 1
+  m_sinking: 0
+  GoldGain: 25

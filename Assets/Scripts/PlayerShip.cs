@@ -25,7 +25,9 @@ public class PlayerShip : MonoBehaviour {
 	public int m_rumAfterReset = 0;
 	public Text[] m_texts;
 	public Text m_upgradeCostText;
+	public Text gold;
 
+	private Animator anim;
 	private static PlayerShip m_instance = null;
 	public int m_farthestTravelled = 0;
 
@@ -37,6 +39,7 @@ public class PlayerShip : MonoBehaviour {
 		m_pirateBooty = 0;
 		numOfKills = 0;
 		goldLost = 0;
+		anim = GetComponent<Animator>();
 		UpdateTexts((int)m_stats.CARGO_CHANCE);
 		UpdateTexts((int)m_stats.RUM);
 		UpdateTexts((int)m_stats.RUM_AFTER_RESET);
@@ -46,6 +49,7 @@ public class PlayerShip : MonoBehaviour {
 	}
 
 	private void Update() {
+		gold.text = m_pirateBooty.ToString();
 		if (Input.GetMouseButtonDown(0) && m_canAttack) {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
