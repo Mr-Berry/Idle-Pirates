@@ -17,27 +17,32 @@ public class CannonballBehavior : MonoBehaviour {
 
 	public void SetVelocity(Vector3 velocity) {
 		m_rb.velocity = velocity;
+		transform.LookAt(velocity.normalized);
 	}
 
 	// EveryTime this Object Hit anything
 	void OnTriggerEnter(Collider col) {
-		// When it Hits any Object tagged with Water
-		if(col.gameObject.tag == "Water") {
-			GameObject splash = PoolManager.Instance.GetObject((int)Objects.SPLASH_EFFECT);
-			splash.gameObject.SetActive(true);
-			splash.transform.position = transform.position;
-			Explode();
-			gameObject.SetActive(false);
-		} else if (col.gameObject.tag == "Enemy") {
-			col.GetComponent<ShipHealth>().TakeDamage(m_damage);
-			GameObject explosion = PoolManager.Instance.GetObject((int)Objects.EXPLOSION_EFFECT);
-			audio();
-			explosion.gameObject.SetActive(true);
-			explosion.transform.position = col.transform.position;
-		}
+
+
+		RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit)) {
+			if(col.gameObject.tag == "Water") {
+				GameObject splash = PoolManager.Instance.GetObject((int)Objects.SPLASH_EFFECT);
+				splash.gameObject.SetActive(true);
+				splash.transform.position = transform.position;
+				Explode();
+				gameObject.SetActive(false);
+			} else if (col.gameObject.tag == "Enemy") {
+				col.GetComponent<ShipHealth>().TakeDamage(m_damage);
+				GameObject explosion = PoolManager.Instance.GetObject((int)Objects.EXPLOSION_EFFECT);
+				explosion.gameObject.SetActive(true);
+				explosion.transform.position = hit.point;
+				explosion.transform.LookAt(transform.forward);
+			}           
+        }
+
 	}
 
-	// SphereCast to checks every Object within it
 	void Explode () {
         Collider[] colliders = Physics.OverlapSphere(transform.position, m_explosionRadius);
         for (int i = 0; i < colliders.Length; i++) {
@@ -48,7 +53,6 @@ public class CannonballBehavior : MonoBehaviour {
         }
     }
 
-	// Visual representation of the SphereCast's Range
 	void OnDrawGizmosSelected () {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 10);

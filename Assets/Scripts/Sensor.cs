@@ -14,7 +14,11 @@ public class Sensor : MonoBehaviour {
 		return m_target;
 	}
 
-	private void OnTriggerExit(Collider other) {
-		m_target = null;
+	private void Update() {
+		if (m_target != null) {
+			if (m_target.m_isDead) {
+				m_target = null;
+			}
+		}
 	}
 }

@@ -21,13 +21,14 @@ GameObject:
   - component: {fileID: 4811261633454880}
   - component: {fileID: 198260967031598716}
   - component: {fileID: 199844797068878038}
+  - component: {fileID: 114672491706524414}
   m_Layer: 0
   m_Name: CanonFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1549162036021628
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,6 +73,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114672491706524414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304762610607758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1006057700fcfd74591371a7344a04f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_timer: 1
 --- !u!198 &198260967031598716
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -84,7 +97,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -3430,7 +3443,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 0
   useRigidbodyForVelocity: 1

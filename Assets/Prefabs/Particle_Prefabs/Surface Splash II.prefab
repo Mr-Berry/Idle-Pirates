@@ -22,13 +22,14 @@ GameObject:
   - component: {fileID: 15395554655973382}
   - component: {fileID: 12524570242154396}
   - component: {fileID: 26503634532907202}
+  - component: {fileID: 114229654414698466}
   m_Layer: 0
   m_Name: Surface Splash II
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4884895522558368
 Transform:
   m_ObjectHideFlags: 1
@@ -143,3 +144,15 @@ ParticleRenderer:
     x Tile: 1
     y Tile: 1
     cycles: 1
+--- !u!114 &114229654414698466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1763407139416774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1006057700fcfd74591371a7344a04f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_timer: 1

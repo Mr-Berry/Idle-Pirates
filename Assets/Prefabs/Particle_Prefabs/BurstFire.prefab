@@ -38,13 +38,14 @@ GameObject:
   - component: {fileID: 4443300210895084}
   - component: {fileID: 198708467028131510}
   - component: {fileID: 199406069570590822}
+  - component: {fileID: 114559854318265488}
   m_Layer: 0
   m_Name: BurstFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4393508914515954
 Transform:
   m_ObjectHideFlags: 1
@@ -72,6 +73,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114559854318265488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1721248329393898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1006057700fcfd74591371a7344a04f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_timer: 1
 --- !u!198 &198211726755906010
 ParticleSystem:
   m_ObjectHideFlags: 1
