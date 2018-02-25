@@ -13,6 +13,9 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip CannonHit_V2;
 	public AudioClip CannonHit_V3;
 
+	public AudioClip Water_V1;
+	public AudioClip Water_V2;
+
 	private AudioSource speaker;
 
 	public static AudioManager Instance { get { return m_instance; }}
@@ -47,6 +50,33 @@ public class AudioManager : MonoBehaviour {
 			case 4:
 				mixer(CannonFire_V4, SetRandomPitch(0.5f, 1.5f));
 				break; 
+		}
+	}
+
+	public void PlayRandom_CannonHit() {
+		int index = Random.Range(0, 4);
+		switch(index) {
+			case 1: 
+				mixer(CannonHit_V1, SetRandomPitch(0.5f, 1.5f));
+				break;
+			case 2:
+				mixer(CannonHit_V2, SetRandomPitch(0.5f, 1.5f));
+				break;
+			case 3: 
+				mixer(CannonHit_V3, SetRandomPitch(0.5f, 1.5f));
+				break;
+		}
+	}
+
+	public void PlayRandom_Water() {
+		int index = Random.Range(0, 3);
+		switch(index) {
+			case 1: 
+				mixer(Water_V1, SetRandomPitch(0.5f, 1.5f));
+				break;
+			case 2:
+				mixer(Water_V2, SetRandomPitch(0.5f, 1.5f));
+				break;
 		}
 	}
 
