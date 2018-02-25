@@ -8,7 +8,7 @@ public class WaveManager : MonoBehaviour {
 	public int m_numInWave = 10;
 	public int m_numKilledInWave = 0;
 	public int m_numToSpawn = 1;
-	public float m_delayBetweenSpawns = 0.5f;
+	public float m_delayBetweenSpawns = 1f;
 	public float m_cargoShipChance = 0.05f;
 	public Transform m_spawnPointContainer;
 	public static WaveManager Instance { get{ return m_instance; }}
