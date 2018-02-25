@@ -22,7 +22,6 @@ public class WaveManager : MonoBehaviour {
 
 	private void Awake() {
 		m_instance = this;
-		Debug.Log(m_instance);
 	}
 
 	private void Start() {
@@ -58,7 +57,6 @@ public class WaveManager : MonoBehaviour {
 				enemy = PoolManager.Instance.GetObject((int)Objects.ENEMY_NORMAL);
 			}
 			int position = spawnPoints[Random.Range(0, spawnPoints.Count)];
-			Debug.Log(m_numSpawnPoints.Count);
 			spawnPoints.Remove(position);
 			InitializeEnemy(enemy, position);
 		}

@@ -19,9 +19,12 @@ public class PlayerShip : MonoBehaviour {
 	public bool m_canAttack = true;
 	public float m_xVel = 10;
 	public int m_upgradeLevel = 1;
+	public int m_upgradeCost = 5;
+	public int m_damage = 5;
 	public int m_rum = 0;
 	public int m_rumAfterReset = 0;
 	public Text[] m_texts;
+	public Text m_upgradeCostText;
 
 	private static PlayerShip m_instance = null;
 	public int m_farthestTravelled = 0;
@@ -39,6 +42,7 @@ public class PlayerShip : MonoBehaviour {
 		UpdateTexts((int)m_stats.RUM_AFTER_RESET);
 		UpdateTexts((int)m_stats.DISTANCE);
 		UpdateTexts((int)m_stats.GOLD_STOLEN);
+		SetUpgradeCost();
 	}
 
 	private void Update() {
@@ -71,6 +75,7 @@ public class PlayerShip : MonoBehaviour {
 		cannonball.transform.position = m_playerFiringPoint.position;
 		cannonball.SetActive(true);
 		CannonballBehavior script = cannonball.GetComponent<CannonballBehavior>();
+		script.m_damage = m_damage;
 		script.SetVelocity(GetVelocity(enemyPos, script));
 		
 	}
@@ -106,12 +111,29 @@ public class PlayerShip : MonoBehaviour {
 				m_texts[index].text = m_rumAfterReset.ToString();
 			break;
 			case 5:
-				m_texts[index].text = m_farthestTravelled.ToString();
+				m_texts[index].text = m_farthestTravelled.ToString() + "KM";
 			break;
 			default:
 				Debug.LogError("UnknownCase");
 			break;
 		}
 		m_texts[index].alignment = TextAnchor.MiddleCenter;
+	}
+
+	public void UpgradePrimaryCannon() {
+		if (m_pirateBooty >= m_upgradeCost) {
+			m_upgradeLevel++;
+			if( m_upgradeLevel % 25 == 0) {
+				m_damage *= 5;
+			} else {
+				m_damage = (int)(m_damage * 1.25);
+			}
+			SetUpgradeCost();
+		}
+	}
+
+	public void SetUpgradeCost() {
+		m_upgradeCost = 5*m_upgradeLevel;
+		m_upgradeCostText.text = m_upgradeCost.ToString();
 	}
 }

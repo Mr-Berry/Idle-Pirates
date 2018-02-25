@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cannons : MonoBehaviour {
 
 	public float m_sFireRate = 1f;
 	public float m_mFireRate = 0.5f;
-	public int m_sUpgradeLevel = 1;
-	public int m_mUpgradeLevel = 1;
+	public int m_sUpgradeLevel = 0;
+	public int m_mUpgradeLevel = 0;
+	public int m_sUpgradeCost;
+	public int m_mUpgradeCost;
+	private int m_sDamage = 20;
+	private int m_mDamage = 50;
 	public Transform m_sFiringPointContainer;
 	public Transform m_mFiringPointContainer;
 	public bool m_secondariesUnlocked = false;
 	public bool m_mainsUnlocked = false;
 	public static Cannons Instance { get { return m_instance; }}
+	public Text m_sUpgradeCostText;
+	public Text m_mUpgradeCostText;
 
 	private static Cannons m_instance = null;
 	private Transform[] m_sCannonFiringPoints;
@@ -28,6 +35,8 @@ public class Cannons : MonoBehaviour {
 	private void Start() {
 		m_sensors = GetComponentsInChildren<Sensor>();
 		GetFiringPoints();
+		SetSecondaryUpgradeCost();
+		SetMainUpgradeCost();
 	}
 
 	private void Update() {
@@ -54,7 +63,7 @@ public class Cannons : MonoBehaviour {
 				cannonball.transform.position = m_sCannonFiringPoints[index].position;
 				cannonball.SetActive(true);
 				CannonballBehavior script = cannonball.GetComponent<CannonballBehavior>();
-				SetSecondaryDamage(script);
+				script.m_damage = m_sDamage;
 				script.SetVelocity(GetVelocity(m_sensors[index].GetTarget().gameObject, script, m_sCannonFiringPoints[index]));
 				StartCoroutine(DelayAfterAttack(index, m_sFiringDelays));
 			}
@@ -62,7 +71,7 @@ public class Cannons : MonoBehaviour {
 	}
 
 	private void FireMainCannon(int index) {
-		if (m_secondariesUnlocked) {
+		if (m_mainsUnlocked) {
 			if ( m_mFiringDelays[index]) {
 				m_mFiringDelays[index] = false;
 				GameObject cannonball = PoolManager.Instance.GetObject((int)Objects.CANNONBALL_M);
@@ -71,7 +80,7 @@ public class Cannons : MonoBehaviour {
 				cannonball.transform.position = m_mCannonFiringPoints[index].position;
 				cannonball.SetActive(true);
 				CannonballBehavior script = cannonball.GetComponent<CannonballBehavior>();
-				SetMainDamage(script);
+				script.m_damage = m_mDamage;
 				script.SetVelocity(GetVelocity(m_sensors[index].GetTarget().gameObject, script, m_mCannonFiringPoints[index]));
 				StartCoroutine(DelayAfterAttack(index, m_mFiringDelays));
 			}
@@ -107,24 +116,54 @@ public class Cannons : MonoBehaviour {
 		}				
 	}
 
-	private void SetSecondaryDamage(CannonballBehavior cannonball) {
-		cannonball.m_damage = (int)(m_sUpgradeLevel * 2.25f);
-	}
-
-	private void SetMainDamage(CannonballBehavior cannonball) {
-		cannonball.m_damage = (int)(m_sUpgradeLevel * 2.5f);
+	private void SetSecondaryDamage() {
+		if (m_sUpgradeLevel % 25 == 0 && m_sUpgradeLevel > 0) {
+			m_sDamage *= 5;
+		} else {
+			m_sDamage = (int)(m_sDamage * 1.5);
+		}
 	}
 
 	private void SetMainDamage() {
-
+		if (m_mUpgradeLevel % 25 == 0 && m_mUpgradeLevel > 0) {
+			m_mDamage += 50;
+		} else {
+			m_mDamage = (int)(m_mDamage * 1.5);
+		}
 	}
 
 	public void UpgradeSecondaries() {
-
+		if (PlayerShip.Instance.m_pirateBooty >= m_sUpgradeCost) {
+			PlayerShip.Instance.m_pirateBooty -= m_sUpgradeCost;
+			if (!m_secondariesUnlocked) {
+				m_secondariesUnlocked = true;
+			}
+			m_sUpgradeLevel++;
+			SetSecondaryDamage();
+			SetSecondaryUpgradeCost();
+		}
 	}
 
 	public void UpgradeMains() {
-		
+		if (PlayerShip.Instance.m_pirateBooty >= m_mUpgradeCost) {
+			PlayerShip.Instance.m_pirateBooty -= m_mUpgradeCost;
+			if (!m_mainsUnlocked) {
+				m_mainsUnlocked = true;
+			}
+			m_mUpgradeLevel++;
+			SetMainDamage();
+			SetMainUpgradeCost();
+		}
+	}
+
+	public void SetSecondaryUpgradeCost() {
+		m_sUpgradeCost = 50 + 10*m_sUpgradeLevel;
+		m_sUpgradeCostText.text = m_sUpgradeCost.ToString();
+	}
+
+	public void SetMainUpgradeCost() {
+		m_mUpgradeCost = 500 + 50*m_mUpgradeLevel;
+		m_mUpgradeCostText.text = m_mUpgradeCost.ToString();
 	}
 
 	private void SpawnSecondaryEffect(int index) {
@@ -149,7 +188,7 @@ public class Cannons : MonoBehaviour {
 		canonEffect.transform.rotation = m_mCannonFiringPoints[index].rotation;
 	}
 	
-	void audio() {
+	private void audio() {
 		AudioManager.Instance.PlayRandom_CannonFire();
 	}
 }

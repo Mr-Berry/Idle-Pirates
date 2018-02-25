@@ -16,7 +16,7 @@ public class Sensor : MonoBehaviour {
 
 	private void Update() {
 		if (m_target != null) {
-			if (m_target.m_isDead) {
+			if (m_target.m_isDead || !m_target.gameObject.activeInHierarchy) {
 				m_target = null;
 			}
 		}

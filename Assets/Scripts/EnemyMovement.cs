@@ -52,6 +52,7 @@ public class EnemyMovement : MonoBehaviour {
 	public void NormalizeSpeed() {
 		if (moveSpeed == m_deathSpeed) {
 			moveSpeed = m_originalSpeed;
+			StopAllCoroutines();
 		}
 	}
 

@@ -4907,6 +4907,8 @@ MonoBehaviour:
   m_canAttack: 1
   m_xVel: 10
   m_upgradeLevel: 1
+  m_upgradeCost: 5
+  m_damage: 5
   m_rum: 0
   m_rumAfterReset: 0
   m_texts:
@@ -4916,6 +4918,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  m_upgradeCostText: {fileID: 0}
   m_farthestTravelled: 0
 --- !u!114 &114719931909784488
 MonoBehaviour:
@@ -4985,12 +4988,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_sFireRate: 1
   m_mFireRate: 0.5
-  m_sUpgradeLevel: 1
-  m_mUpgradeLevel: 1
+  m_sUpgradeLevel: 0
+  m_mUpgradeLevel: 0
+  m_sUpgradeCost: 0
+  m_mUpgradeCost: 0
   m_sFiringPointContainer: {fileID: 4688609733420562}
   m_mFiringPointContainer: {fileID: 4304423337876546}
-  m_secondariesUnlocked: 1
-  m_mainsUnlocked: 1
+  m_secondariesUnlocked: 0
+  m_mainsUnlocked: 0
+  m_sUpgradeCostText: {fileID: 0}
+  m_mUpgradeCostText: {fileID: 0}
 --- !u!136 &136725666451278822
 CapsuleCollider:
   m_ObjectHideFlags: 1
