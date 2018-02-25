@@ -14,7 +14,7 @@ public class WaveManager : MonoBehaviour {
 	public static WaveManager Instance { get{ return m_instance; }}
 
 	private Transform[] m_spawnPoints;
-	private static WaveManager m_instance = null;
+	private static WaveManager m_instance;
 	private List<int> m_numSpawnPoints = new List<int>();
 
 	private void Awake() {

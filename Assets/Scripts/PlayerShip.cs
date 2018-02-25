@@ -12,6 +12,8 @@ public class PlayerShip : MonoBehaviour {
 	public float m_playerAttackRate = 1f;
 	public float m_rotationRate = 1f;
 	public bool m_canAttack = true;
+	public float m_xVel = 10;
+	public int m_upgradeLevel = 1;
 
 	private static PlayerShip m_instance = null;
 
@@ -19,9 +21,12 @@ public class PlayerShip : MonoBehaviour {
 		m_instance = this;
 	}
 
+	private void Start() {
+		
+	}
+
 	private void Update() {
 		if (Input.GetMouseButtonDown(0) && m_canAttack) {
-			Debug.Log("click");
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 			if (Physics.Raycast(ray,out hit)) {
@@ -36,7 +41,7 @@ public class PlayerShip : MonoBehaviour {
 	IEnumerator RotateCannon(Vector3 pos) {
 		Vector3 diff = pos - m_playerCannon.position;
 		Quaternion quat = Quaternion.LookRotation(diff.normalized);
-		quat.eulerAngles = new Vector3(quat.eulerAngles.x,quat.eulerAngles.y + 90,quat.eulerAngles.z);
+		quat.eulerAngles = new Vector3(quat.eulerAngles.x,quat.eulerAngles.y + 75,quat.eulerAngles.z);
 		for (float t = 0; t < m_rotationRate; t += Time.deltaTime) {
 			m_playerCannon.rotation = Quaternion.Lerp(m_playerCannon.rotation,quat,t);
 			yield return null;
@@ -46,13 +51,18 @@ public class PlayerShip : MonoBehaviour {
 	}
 
 	private void FireProjectile(Vector3 enemyPos) {
-		GameObject cannonball = PoolManager.Instance.GetObject((int)Objects.CANNONBALL);
-		cannonball.GetComponent<CannonballBehavior>().SetVelocity(GetVelocity(enemyPos));
+		GameObject cannonball = PoolManager.Instance.GetObject((int)Objects.CANNONBALL_L);
+		cannonball.transform.position = m_playerFiringPoint.position;
+		cannonball.SetActive(true);
+		CannonballBehavior script = cannonball.GetComponent<CannonballBehavior>();
+		script.SetVelocity(GetVelocity(enemyPos, script));
 	}
 
-	private Vector3 GetVelocity(Vector3 enemyPos) {
-		float distance = (enemyPos - m_playerFiringPoint.position).magnitude;
-		float vel = Mathf.Sqrt(distance*Physics.gravity.y/Mathf.Sin(Mathf.PI));
-		return m_playerFiringPoint.forward*vel;
+	private Vector3 GetVelocity(Vector3 enemyPos, CannonballBehavior projectile) {
+		Vector3 direction = enemyPos - m_playerFiringPoint.position;
+		float travelTime = (Mathf.Pow(direction.x,2)+Mathf.Pow(direction.z,2))/Mathf.Pow(projectile.m_speed,2);
+		travelTime = Mathf.Sqrt(travelTime);
+		Vector3 newVelocity = new Vector3(direction.x/travelTime,(direction.y/travelTime)-(Physics.gravity.y*travelTime/2f),direction.z/travelTime);
+		return newVelocity;
 	}
 }
