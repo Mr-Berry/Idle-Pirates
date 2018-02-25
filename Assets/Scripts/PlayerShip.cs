@@ -21,10 +21,6 @@ public class PlayerShip : MonoBehaviour {
 		m_instance = this;
 	}
 
-	private void Start() {
-		
-	}
-
 	private void Update() {
 		if (Input.GetMouseButtonDown(0) && m_canAttack) {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

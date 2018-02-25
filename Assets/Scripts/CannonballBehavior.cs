@@ -5,6 +5,7 @@ using UnityEngine;
 public class CannonballBehavior : MonoBehaviour {
 	public float m_speed;
 	public int m_damage = 2;
+	public int m_explosionRadius = 10;
 	private Vector3 position; // Vector3 that'll be update to make the Object Move
 
 	private Rigidbody m_rb;
@@ -23,14 +24,15 @@ public class CannonballBehavior : MonoBehaviour {
 		// When it Hits any Object tagged with Water
 		if(col.gameObject.tag == "Water") {
 			Explode();
+		} else if (col.gameObject.tag == "Enemy") {
+			col.GetComponent<ShipHealth>().TakeDamage(m_damage);
 		}
 	}
 
 	// SphereCast to checks every Object within it
 	void Explode () {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 10);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, m_explosionRadius);
         for (int i = 0; i < colliders.Length; i++) {
-            Debug.Log("hit " + colliders[i].gameObject.name);
             ShipHealth targetInRange = colliders[i].GetComponent<ShipHealth>();
             if (targetInRange != null) {
                 targetInRange.TakeDamage(m_damage);

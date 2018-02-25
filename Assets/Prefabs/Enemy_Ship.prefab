@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 114632614596168226}
   - component: {fileID: 54938622041549318}
   - component: {fileID: 65630710083575654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_Ship
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4886081584202980}
   - component: {fileID: 33228240589818450}
   - component: {fileID: 23012491299625318}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh3_Group4_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4978476179007766}
   - component: {fileID: 33839966411553754}
   - component: {fileID: 23120227876896952}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh1_Group2_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4987024235923868}
   - component: {fileID: 33774039377169672}
   - component: {fileID: 23906587897556312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh4_Group5_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4573413390970760}
   - component: {fileID: 33125708747441490}
   - component: {fileID: 23733229544348274}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh2_Group3_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4677774719352890}
   - component: {fileID: 33925643137161146}
   - component: {fileID: 23864912049026660}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh5_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
