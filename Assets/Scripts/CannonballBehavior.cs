@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CannonballBehavior : MonoBehaviour {
-	public float moveSpeed; // Number multiplied by Time
+	public float m_speed;
 	public int m_damage = 2;
 	private Vector3 position; // Vector3 that'll be update to make the Object Move
 	private Rigidbody m_rb;
 
-	private void Start() {
+	void Awake() {
 		m_rb = GetComponent<Rigidbody>();
 	}
 
