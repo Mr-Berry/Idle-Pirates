@@ -21,6 +21,9 @@ public class ShipHealth : MonoBehaviour {
 	private void OnEnable() {
 		SetHealth(WaveManager.Instance.m_waveNumber);
 		m_currentHealth = m_maxHealth;
+		if (m_isDead) {
+			HealthBar.Instance.AddHealth(m_maxHealth);
+		}
 		m_isDead = false;
 	}
 
@@ -36,6 +39,7 @@ public class ShipHealth : MonoBehaviour {
 				GetComponent<PirateBooty>().AwardGold(m_movement.hasGold);
 				StartCoroutine(Die());
 			}
+			HealthBar.Instance.DamagedEnemy(damage);
 		}
 	}
 
