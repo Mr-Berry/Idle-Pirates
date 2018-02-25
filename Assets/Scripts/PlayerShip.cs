@@ -23,6 +23,7 @@ public class PlayerShip : MonoBehaviour {
 	public int m_rumAfterReset = 0;
 	public Text[] m_texts;
 
+	private Animator anim;
 	private static PlayerShip m_instance = null;
 	public int m_farthestTravelled = 0;
 
@@ -34,6 +35,7 @@ public class PlayerShip : MonoBehaviour {
 		m_pirateBooty = 0;
 		numOfKills = 0;
 		goldLost = 0;
+		anim = GetComponent<Animator>();
 		UpdateTexts((int)m_stats.CARGO_CHANCE);
 		UpdateTexts((int)m_stats.RUM);
 		UpdateTexts((int)m_stats.RUM_AFTER_RESET);

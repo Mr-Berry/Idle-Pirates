@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PirateBooty : MonoBehaviour {
-
 	public int m_baseGold = 5;
 	public int m_goldAward;
 	public static PirateBooty Instance { get{ return m_instance; }}
