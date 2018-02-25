@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class WaveManager : MonoBehaviour {
 	public float m_delayBetweenSpawns = 1f;
 	public float m_cargoShipChance = 0.05f;
 	public Transform m_spawnPointContainer;
+	public Text m_waveText;
+	public Text m_numInWaveText;
 	public static WaveManager Instance { get{ return m_instance; }}
 
 	private Transform[] m_spawnPoints;
@@ -25,6 +28,8 @@ public class WaveManager : MonoBehaviour {
 	private void Start() {
 		GetSpawnPoints();
 		StartCoroutine(SpawnDelay());
+		SetWaveText();
+		SetEnemyCountText();
 	}
 
 	private void GetSpawnPoints() {
@@ -70,8 +75,10 @@ public class WaveManager : MonoBehaviour {
 		m_numKilledInWave++;
 		if (m_numKilledInWave == m_numInWave) {
 			m_waveNumber++;
+			SetWaveText();
 			m_numKilledInWave = 0;
 		}
+		SetEnemyCountText();
 		StartCoroutine(SpawnDelay());
 	}
 
@@ -82,5 +89,13 @@ public class WaveManager : MonoBehaviour {
 	IEnumerator SpawnDelay() {
 		yield return new WaitForSeconds(m_delayBetweenSpawns);
 		SpawnEnemy();
+	}
+
+	private void SetWaveText() {
+		m_waveText.text = m_waveNumber + "KM Travelled";
+	}
+
+	private void SetEnemyCountText() {
+		m_numInWaveText.text = m_numKilledInWave + " / " + m_numInWave;
 	}
 }

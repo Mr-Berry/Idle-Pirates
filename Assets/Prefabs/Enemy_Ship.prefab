@@ -30,7 +30,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1218034578683826
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597345c253400bb4f98c9ae33cdcd5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 0}
   m_baseHealth: 10
   m_maxHealth: 0
   m_currentHealth: 0
@@ -639,3 +638,4 @@ MonoBehaviour:
   rotSpeed: 5
   spawnPoint: {x: 0, y: 0, z: 0}
   hasGold: 0
+  m_rb: {fileID: 0}

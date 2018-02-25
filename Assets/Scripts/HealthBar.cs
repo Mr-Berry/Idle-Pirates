@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour {
 
 	public static HealthBar Instance { get { return m_instance; }}
+	public Image m_healthbar;
+	public Text m_healthText;
 
-	private Image m_healthbar;
 	private float m_healthPool;
 	private float m_currentPool;
 	private static HealthBar m_instance = null;
@@ -16,24 +17,23 @@ public class HealthBar : MonoBehaviour {
 		m_instance = this;
 	}
 
-	private void Start() {
-		m_healthbar = GetComponentInChildren<Image>();
-	}
-
 	public void AddHealth(int health) {
 		m_healthPool += health;
 		m_currentPool = m_healthPool;
+		m_healthText.text = "Health: " + m_currentPool + " / " + m_healthPool;
 	}
 
 	public void SetHealthBar() {
 		m_healthbar.fillAmount = 1;
+		m_healthPool = 0;
 	}
 
 	public void DamagedEnemy(int damage) {
 		m_currentPool -= damage;
-		if (m_currentPool < 0) {
+		if (m_currentPool <= 0) {
 			m_currentPool = 0;
 		}
 		m_healthbar.fillAmount = m_currentPool/m_healthPool;
+		m_healthText.text = "Health: " + m_currentPool + " / " + m_healthPool;
 	}
 }
