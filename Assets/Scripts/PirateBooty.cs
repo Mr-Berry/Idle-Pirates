@@ -6,6 +6,11 @@ public class PirateBooty : MonoBehaviour {
 
 	public int m_baseGold = 5;
 	public int m_goldAward;
+	// public static PirateBooty Instance { get{ return m_instance; }}
+
+	// void Awake() {
+	// 	m_instance = this;
+	// }
 
 	public void AwardGold() {
 		PlayerShip.Instance.m_pirateBooty += m_goldAward;

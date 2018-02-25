@@ -10,6 +10,7 @@ public class ShipHealth : MonoBehaviour {
 	public int m_currentHealth;
 	public bool m_isDead = true;
 	public bool m_sinking = false;
+	public int GoldGain = 25;
 
 	private void OnEnable() {
 		SetHealth(WaveManager.Instance.m_waveNumber);
@@ -25,6 +26,7 @@ public class ShipHealth : MonoBehaviour {
 				m_sinking = true;
 				m_currentHealth = 0;
 				m_isDead = true;
+				// PirateBooty.Instance.SetGold(GoldGain);
 				StartCoroutine(Die());
 			}
 		}
