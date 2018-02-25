@@ -23,6 +23,9 @@ public class CannonballBehavior : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		// When it Hits any Object tagged with Water
 		if(col.gameObject.tag == "Water") {
+			GameObject splash = PoolManager.Instance.GetObject((int)Objects.SPLASH_EFFECT);
+			splash.gameObject.SetActive(true);
+			splash.transform.position = transform.position;
 			Explode();
 		} else if (col.gameObject.tag == "Enemy") {
 			col.GetComponent<ShipHealth>().TakeDamage(m_damage);
