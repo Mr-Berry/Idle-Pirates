@@ -53,6 +53,9 @@ public class WaveManager : MonoBehaviour {
 
 	private void InitializeEnemy(GameObject enemy, int position) {
 		enemy.transform.position = m_spawnPoints[position].position;
+		EnemyMovement script = enemy.GetComponent<EnemyMovement>();
+		script.spawnPoint = m_spawnPoints[position].position;
+		script.NormalizeSpeed();
 		enemy.SetActive(true);
 	}
 
@@ -60,13 +63,17 @@ public class WaveManager : MonoBehaviour {
 		m_numKilledInWave++;
 		if (m_numKilledInWave == m_numInWave) {
 			m_waveNumber++;
+			m_numKilledInWave = 0;
 		}
 		StartCoroutine(SpawnDelay());
 	}
 
+	public void RestartWave() {
+		SpawnEnemy();
+	}
+
 	IEnumerator SpawnDelay() {
 		yield return new WaitForSeconds(m_delayBetweenSpawns);
-		m_waveNumber++;
 		SpawnEnemy();
 	}
 }

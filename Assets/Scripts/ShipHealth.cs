@@ -9,6 +9,7 @@ public class ShipHealth : MonoBehaviour {
 	public int m_maxHealth;
 	public int m_currentHealth;
 	public bool m_isDead = true;
+	public bool m_sinking = false;
 
 	private void OnEnable() {
 		SetHealth(WaveManager.Instance.m_waveNumber);
@@ -20,7 +21,8 @@ public class ShipHealth : MonoBehaviour {
 		if (!m_isDead) {
 			if (m_currentHealth > damage) {
 				m_currentHealth -= damage;
-			} else {
+			} else if (!m_sinking) {
+				m_sinking = true;
 				m_currentHealth = 0;
 				m_isDead = true;
 				StartCoroutine(Die());
@@ -29,7 +31,12 @@ public class ShipHealth : MonoBehaviour {
 	}
 
 	IEnumerator Die() {
-		yield return new WaitForSeconds(1);
+		WaveManager.Instance.EnemyKilled();
+		EnemyMovement script = GetComponent<EnemyMovement>();
+		script.SlowDown();
+		script.hasGold = false;
+		yield return new WaitForSeconds(5);
+		m_sinking = false;
 		gameObject.SetActive(false);
 	}
 
