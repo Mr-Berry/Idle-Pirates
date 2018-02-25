@@ -22,6 +22,7 @@ public class PlayerShip : MonoBehaviour {
 	public int m_rum = 0;
 	public int m_rumAfterReset = 0;
 	public Text[] m_texts;
+	public Text gold;
 
 	private Animator anim;
 	private static PlayerShip m_instance = null;
@@ -44,6 +45,7 @@ public class PlayerShip : MonoBehaviour {
 	}
 
 	private void Update() {
+		gold.text = m_pirateBooty.ToString();
 		if (Input.GetMouseButtonDown(0) && m_canAttack) {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;

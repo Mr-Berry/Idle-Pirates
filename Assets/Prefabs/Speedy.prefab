@@ -36,6 +36,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4479549004940386}
+  - component: {fileID: 114859817490206174}
+  - component: {fileID: 114928392097211390}
+  - component: {fileID: 114380593688671674}
+  - component: {fileID: 54801680512317700}
+  - component: {fileID: 65432302406957024}
   m_Layer: 0
   m_Name: Speedy
   m_TagString: Untagged
@@ -274,6 +279,79 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1395399624938204}
   m_Mesh: {fileID: 4300000, guid: b44ee297864a6d54b8875379cde13671, type: 3}
+--- !u!54 &54801680512317700
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191492300102170}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65432302406957024
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191492300102170}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 5, z: 10.880068}
+  m_Center: {x: 0, y: 2.5, z: 1.2951381}
+--- !u!114 &114380593688671674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191492300102170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45590efc68afb345904a82bc1cf1511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 12
+  rotSpeed: 5
+  spawnPoint: {x: 0, y: 0, z: 0}
+  hasGold: 0
+  m_rb: {fileID: 54801680512317700}
+--- !u!114 &114859817490206174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191492300102170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597345c253400bb4f98c9ae33cdcd5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_baseHealth: 10
+  m_maxHealth: 0
+  m_currentHealth: 0
+  m_isDead: 1
+  m_sinking: 0
+  GoldGain: 25
+--- !u!114 &114928392097211390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191492300102170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38db524a37449c343904aca063ece7b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_baseGold: 5
+  m_goldAward: 250
 --- !u!198 &198450943641525306
 ParticleSystem:
   m_ObjectHideFlags: 1
