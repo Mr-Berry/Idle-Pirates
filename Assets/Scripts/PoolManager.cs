@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum Objects {CANNONBALL, ENEMY_NORMAL, ENEMY_CARGO, ENEMY_BOSS}
+public enum Objects {CANNONBALL_L, CANNONBALL_M, CANNONBALL_S, ENEMY_NORMAL, ENEMY_CARGO, ENEMY_BOSS}
 
 public class PoolManager : MonoBehaviour {
 

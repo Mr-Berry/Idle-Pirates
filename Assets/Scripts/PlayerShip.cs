@@ -13,11 +13,16 @@ public class PlayerShip : MonoBehaviour {
 	public float m_rotationRate = 1f;
 	public bool m_canAttack = true;
 	public float m_xVel = 10;
+	public int m_upgradeLevel = 1;
 
 	private static PlayerShip m_instance = null;
 
 	private void Awake() {
 		m_instance = this;
+	}
+
+	private void Start() {
+		
 	}
 
 	private void Update() {
@@ -46,7 +51,7 @@ public class PlayerShip : MonoBehaviour {
 	}
 
 	private void FireProjectile(Vector3 enemyPos) {
-		GameObject cannonball = PoolManager.Instance.GetObject((int)Objects.CANNONBALL);
+		GameObject cannonball = PoolManager.Instance.GetObject((int)Objects.CANNONBALL_L);
 		cannonball.transform.position = m_playerFiringPoint.position;
 		cannonball.SetActive(true);
 		CannonballBehavior script = cannonball.GetComponent<CannonballBehavior>();
