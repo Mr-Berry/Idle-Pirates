@@ -31,6 +31,7 @@ public class CannonballBehavior : MonoBehaviour {
 		} else if (col.gameObject.tag == "Enemy") {
 			col.GetComponent<ShipHealth>().TakeDamage(m_damage);
 			GameObject explosion = PoolManager.Instance.GetObject((int)Objects.EXPLOSION_EFFECT);
+			audio();
 			explosion.gameObject.SetActive(true);
 			explosion.transform.position = col.transform.position;
 		}
@@ -52,4 +53,8 @@ public class CannonballBehavior : MonoBehaviour {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 10);
     }
+
+	void audio() {
+		AudioManager.Instance.PlayRandom_CannonFire();
+	}
 }
