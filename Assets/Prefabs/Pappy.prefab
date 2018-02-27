@@ -1666,7 +1666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45590efc68afb345904a82bc1cf1511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 12
   rotSpeed: 5
   spawnPoint: {x: 0, y: 0, z: 0}
   hasGold: 0

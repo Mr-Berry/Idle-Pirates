@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PirateBooty : MonoBehaviour {
-	public int m_baseGold = 5;
+	public int m_baseGold = 10;
 	public int m_goldAward;
 	public static PirateBooty Instance { get{ return m_instance; }}
 	private static PirateBooty m_instance;
@@ -22,10 +22,6 @@ public class PirateBooty : MonoBehaviour {
 			PlayerShip.Instance.m_pirateBooty += m_goldAward;
 		}
 
-	}
-
-	public void SetGold(int gold) {
-		m_goldAward += gold;
 	}
 
 	private void OnEnable() {

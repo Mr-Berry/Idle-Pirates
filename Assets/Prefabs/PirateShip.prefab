@@ -1233,7 +1233,7 @@ GameObject:
   - component: {fileID: 136725666451278822}
   - component: {fileID: 114553102968053174}
   - component: {fileID: 114962773788839780}
-  - component: {fileID: 95387846017175986}
+  - component: {fileID: 95744951785354676}
   m_Layer: 0
   m_Name: PirateShip
   m_TagString: Player
@@ -4833,7 +4833,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 40}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &95387846017175986
+--- !u!95 &95744951785354676
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
