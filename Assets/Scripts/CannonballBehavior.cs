@@ -26,7 +26,7 @@ public class CannonballBehavior : MonoBehaviour {
 			GameObject splash = PoolManager.Instance.GetObject((int)Objects.SPLASH_EFFECT);
 			splash.gameObject.SetActive(true);
 			splash.transform.position = transform.position;
-			sound();
+			// sound();
 			Explode();
 			gameObject.SetActive(false);
 		} else if (col.gameObject.tag == "Enemy") {
@@ -60,7 +60,7 @@ public class CannonballBehavior : MonoBehaviour {
 		AudioManager.Instance.PlayRandom_CannonHit();
 	}
 
-	void sound() {
-		AudioManager.Instance.PlayRandom_Water();
-	}
+	// void sound() {
+	// 	AudioManager.Instance.PlayRandom_Water();
+	// }
 }

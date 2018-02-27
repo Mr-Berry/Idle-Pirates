@@ -50,6 +50,21 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
+	public void PlayRandom_CannonHit() {
+		int index = Random.Range(0, 5);
+		switch(index) {
+			case 1: 
+				mixer(CannonHit_V1, SetRandomPitch(0.5f, 1.5f));
+				break;
+			case 2:
+				mixer(CannonHit_V2, SetRandomPitch(0.5f, 1.5f));
+				break;
+			case 3: 
+				mixer(CannonHit_V3, SetRandomPitch(0.5f, 1.5f));
+				break; 
+		}
+	}
+
 	public void mixer(AudioClip audio, float pitch) {
 		speaker.pitch = pitch;
 		speaker.clip = audio;
